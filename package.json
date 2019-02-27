@@ -1,0 +1,22 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sungkuk5420/crawler.git"
+  },
+  "author": "sungkuk.kim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sungkuk5420/crawler/issues"
+  },
+  "homepage": "https://github.com/sungkuk5420/crawler#readme",
+  "dependencies": {
+    "csv-parse": "^4.3.3"
+  }
+}
