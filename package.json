@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/sungkuk5420/crawler#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
     "csv-parse": "^4.3.3",
     "xlsx": "^0.14.1"
   }
