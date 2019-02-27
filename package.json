@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sungkuk5420/crawler#readme",
   "dependencies": {
-    "csv-parse": "^4.3.3"
+    "csv-parse": "^4.3.3",
+    "xlsx": "^0.14.1"
   }
 }
