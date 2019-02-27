@@ -9,7 +9,7 @@ const workbook = xlsx.readFile('xlsx/data.xlsx');
 const ws = workbook.Sheets.영화목록;
 const records = xlsx.utils.sheet_to_json(ws);
 
-console.log(records);
+// console.log(records);
 //parse csv file
 // const csv = fs.readFileSync('csv/data.csv');
 // const records = parse(csv.toString('utf-8'));
@@ -30,22 +30,30 @@ console.log(records);
 
 //axios crawler
 const crawler = async () => {
-    add_to_sheet(ws, 'C1', 's', '평점');
-    for (const [i, r] of records.entries()) {
-        const response = await axios.get(r.링크);
-        if (response.status === 200) {
-            const html = response.data;
-            const $ = cheerio.load(html);
-            const text = $('.score.score_left .star_score').text();
-            console.log(r.제목, '평점', text.trim());
-            const newCell = 'C' + (i + 2);
-            add_to_sheet(ws, newCell, 'n', text.trim());
+    // add_to_sheet(ws, 'C1', 's', '평점');
+    const response = await axios.get('https://www.amazon.co.jp/');
+    // console.log(response);
+    if (response.status === 200) {
+        const html = response.data;
+        // console.log(html);
+        const $ = cheerio.load(html);
+        const $categorys = $('.product-shoveler');
+        for (var i = 0, len = $categorys.length; i < len; i++) {
+            var $titleDOM = $categorys.eq(i).find('.as-title-block-left');
+            var $sections = $titleDOM.closest('.card-lite');
+            var $items = $titleDOM.closest('.card-lite').find('.feed-carousel-card');
+            console.log($titleDOM.text());
+            console.log($sections.length);
+            for (var j = 0, jlen = $items.length; j < jlen; j++) {
+                var src = $items.eq(j).find('img').attr('src');
+                console.log(`${src}`);
+            }
         }
     }
     // await Promise.all(records.map(async (r) => {
 
     // }));
-    xlsx.writeFile(workbook, 'xlsx/result.xlsx');
+    // xlsx.writeFile(workbook, 'xlsx/result.xlsx');
 };
 crawler();
 //axios crawler end point
